@@ -68,7 +68,7 @@ PUT /estantes/{id}/livros - Adiciona livro a uma estante
 
 GET /estantes/{id}/livros - Lista livros de uma estante
 
-👨‍💻 Autores
-Luiz Antônio Cardoso
+👨‍💻 Dupla
 
+Luiz Antônio Cardoso
 Gabriel Milano Alves

@@ -1,19 +1,20 @@
 📚 Biblioteca Virtual - Backend em Java + Firebase
 Este projeto é um backend desenvolvido em Java 21 com Spring Boot, integrado ao Firebase, que simula uma biblioteca virtual. Os usuários podem organizar livros em estantes, classificando-os como lidos ou para ler, de forma similar a plataformas como Trello ou Spotify, mas com foco exclusivo na organização pessoal de leitura.
 
-🧱 Estrutura do Projeto
-bash
-Copiar
-Editar
+## Estrutura do Projeto
+```text
 src/
 ├── main/
-│   ├── java/com/example/backend_projeto_LuizAntonioCardoso_GabrielMilano/
-│   │   ├── controller/      # Controladores REST (LivroController, EstanteController)
-│   │   ├── entities/        # Entidades (Livro, Estante, EstanteLivro)
-│   │   ├── services/        # Lógica de negócio (LivroService, EstanteService, FirebaseService)
-│   ├── resources/           # Arquivos de configuração (application.properties, serviceAccountKey.json)
-├── test/                    # Testes unitários
+│ ├── java/
+│ │ └── com/example/backend_projeto_LuizAntonioCardoso_GabrielMilano/
+│ │ ├── controller/ # Controladores REST (LivroController, EstanteController)
+│ │ ├── entities/ # Entidades de domínio (Livro, Estante, EstanteLivro)
+│ │ ├── services/ # Lógica de negócio (LivroService, EstanteService, FirebaseService)
+│ └── resources/ # Arquivos de configuração (application.properties, serviceAccount.json)
+
+```
 🔧 Tecnologias Utilizadas
+
 Java 21
 
 Spring Boot

@@ -71,6 +71,4 @@ GET /estantes/{id}/livros - Lista livros de uma estante
 👨‍💻 Autores
 Luiz Antônio Cardoso
 
-Gabriel [Sobrenome, se quiser]
-
-[Outros, se houver]
+Gabriel Milano Alves

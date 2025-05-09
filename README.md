@@ -1,20 +1,21 @@
 📚 Biblioteca Virtual - Backend em Java + Firebase
-Este projeto é um backend desenvolvido em Java 17 com Spring Boot, integrado ao Firebase, que simula uma biblioteca virtual. Os usuários podem organizar livros em estantes, classificando-os como lidos ou para ler, de forma similar a plataformas como Trello ou Spotify, mas com foco exclusivo na organização pessoal de leitura.
+Este projeto é um backend desenvolvido em Java 21 com Spring Boot, integrado ao Firebase, que simula uma biblioteca virtual. Os usuários podem organizar livros em estantes, classificando-os como lidos ou para ler, de forma similar a plataformas como Trello ou Spotify, mas com foco exclusivo na organização pessoal de leitura.
 
-🧱 Estrutura do Projeto
-bash
-Copiar
-Editar
+## Estrutura do Projeto
+```text
 src/
 ├── main/
-│   ├── java/com/example/backend_projeto_LuizAntonioCardoso_GabrielMilano/
-│   │   ├── controller/      # Controladores REST (LivroController, EstanteController)
-│   │   ├── entities/        # Entidades (Livro, Estante, EstanteLivro)
-│   │   ├── services/        # Lógica de negócio (LivroService, EstanteService, FirebaseService)
-│   ├── resources/           # Arquivos de configuração (application.properties, serviceAccountKey.json)
-├── test/                    # Testes unitários
+│ ├── java/
+│ │ └── com/example/backend_projeto_LuizAntonioCardoso_GabrielMilano/
+│ │ ├── controller/ # Controladores REST (LivroController, EstanteController)
+│ │ ├── entities/ # Entidades de domínio (Livro, Estante, EstanteLivro)
+│ │ ├── services/ # Lógica de negócio (LivroService, EstanteService, FirebaseService)
+│ └── resources/ # Arquivos de configuração (application.properties, serviceAccount.json)
+
+```
 🔧 Tecnologias Utilizadas
-Java 17
+
+Java 21
 
 Spring Boot
 
@@ -22,8 +23,6 @@ Firebase Admin SDK
 
 Gradle
 
-JPA / Hibernate
-Android Developers
 
 🔥 Funcionalidades
 📚 CRUD de livros
@@ -32,10 +31,7 @@ Android Developers
 
 🔁 Associação de livros com estantes
 
-📌 Organização de livros por status (lido, para ler)
-
 ☁️ Integração com Firebase para persistência de dados
-YouTube
 
 🚀 Como Executar
 Clone o repositório:
@@ -49,18 +45,9 @@ Configure o Firebase:
 
 Insira seu arquivo serviceAccountKey.json em src/main/resources.
 
-Compile e execute:
-
-bash
-Copiar
-Editar
-./gradlew bootRun
 Acesse no navegador:
 
-arduino
-Copiar
-Editar
-http://localhost:8080
+
 📌 Exemplos de Endpoints
 Criar um novo livro
 Endpoint: POST /criar/biblioteca/livro/{isbn}
@@ -137,7 +124,6 @@ public class FirebaseService {
 
     public void adicionarLivroNaEstante(String idEstante, String isbn, int paginaAtual) {
         DocumentReference estanteRef = db.collection("estantes").document(idEstante);
-        // buscar estante, adicionar livro e atualizar
     }
 }
 

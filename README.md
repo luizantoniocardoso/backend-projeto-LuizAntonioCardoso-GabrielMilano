@@ -1,17 +1,17 @@
-📚 Biblioteca Virtual - Projeto Backend
-Este é um projeto de backend desenvolvido em Java utilizando o Spring Boot e integração com o Firebase, com o objetivo de simular uma biblioteca virtual. Nele, os usuários podem organizar livros em estantes, classificando-os como lidos ou para ler, de forma similar a plataformas como Trello ou Spotify, porém com foco exclusivo na organização pessoal de leitura.
+📚 Biblioteca Virtual - Backend em Java + Firebase
+Este projeto é um backend desenvolvido em Java 17 com Spring Boot, integrado ao Firebase, que simula uma biblioteca virtual. Os usuários podem organizar livros em estantes, classificando-os como lidos ou para ler, de forma similar a plataformas como Trello ou Spotify, mas com foco exclusivo na organização pessoal de leitura.
 
-📁 Estrutura do Projeto
+🧱 Estrutura do Projeto
 bash
 Copiar
 Editar
 src/
 ├── main/
-│   ├── java/com/example/backend_projeto_LuizAntonioCardosoGabriel/
+│   ├── java/com/example/backend_projeto_LuizAntonioCardoso_GabrielMilano/
 │   │   ├── controller/      # Controladores REST (LivroController, EstanteController)
-│   │   ├── entities/        # Entidades JPA (Livro, Estante, EstanteLivro)
+│   │   ├── entities/        # Entidades (Livro, Estante, EstanteLivro)
 │   │   ├── services/        # Lógica de negócio (LivroService, EstanteService, FirebaseService)
-│   ├── resources/           # Arquivos de configuração
+│   ├── resources/           # Arquivos de configuração (application.properties, serviceAccountKey.json)
 ├── test/                    # Testes unitários
 🔧 Tecnologias Utilizadas
 Java 17
@@ -23,6 +23,7 @@ Firebase Admin SDK
 Gradle
 
 JPA / Hibernate
+Android Developers
 
 🔥 Funcionalidades
 📚 CRUD de livros
@@ -33,7 +34,8 @@ JPA / Hibernate
 
 📌 Organização de livros por status (lido, para ler)
 
-☁️ Integração com Firebase para autenticação ou persistência (conforme seu código)
+☁️ Integração com Firebase para persistência de dados
+YouTube
 
 🚀 Como Executar
 Clone o repositório:
@@ -45,7 +47,7 @@ git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
 cd NOME_DO_REPOSITORIO
 Configure o Firebase:
 
-Insira seu arquivo firebase-adminsdk.json em src/main/resources ou configure nas variáveis de ambiente.
+Insira seu arquivo serviceAccountKey.json em src/main/resources.
 
 Compile e execute:
 
@@ -60,15 +62,85 @@ Copiar
 Editar
 http://localhost:8080
 📌 Exemplos de Endpoints
-GET /estantes - Lista todas as estantes
+Criar um novo livro
+Endpoint: POST /criar/biblioteca/livro/{isbn}
 
-POST /livros - Cadastra um novo livro
+Descrição: Busca informações do livro pelo ISBN e salva no Firebase.
+GitHub
 
-PUT /estantes/{id}/livros - Adiciona livro a uma estante
+Criar uma nova estante
+Endpoint: POST /estante/criar/{nome}
 
-GET /estantes/{id}/livros - Lista livros de uma estante
+Descrição: Cria uma nova estante com o nome especificado.
 
+Adicionar livro a uma estante
+Endpoint: POST /estante/{idEstante}/adicionar-livro/{isbn}?paginaAtual=10
+
+Descrição: Adiciona o livro com o ISBN especificado à estante, indicando a página atual de leitura.
+
+🧩 Modelos de Dados
+📘 Livro
+java
+Copiar
+Editar
+public class Livro {
+    private String isbn;
+    private String title;
+    private String subtitle;
+    private List<String> authors;
+    private String synopsis;
+    private Integer year;
+    private Integer pageCount;
+    private String genero;
+    private List<String> tags;
+    // Getters e Setters
+}
+🗄️ Estante
+java
+Copiar
+Editar
+public class Estante {
+    private String id;
+    private String nome;
+    private String descricao;
+    private String tema;
+    private List<EstanteLivro> livros;
+    // Getters e Setters
+}
+📗 EstanteLivro
+java
+Copiar
+Editar
+public class EstanteLivro {
+    private String isbn;
+    private int paginaAtual;
+    private LocalDateTime dataAdicionado;
+    // Getters e Setters
+}
+☁️ Integração com Firebase
+A classe FirebaseService gerencia a persistência dos dados no Firebase Firestore.
+
+java
+Copiar
+Editar
+@Service
+public class FirebaseService {
+    private final Firestore db = FirestoreClient.getFirestore();
+
+    public void salvarLivro(Livro livro) {
+        db.collection("livros").document(livro.getIsbn()).set(livro);
+    }
+
+    public void salvarEstante(Estante estante) {
+        db.collection("estantes").document(estante.getId()).set(estante);
+    }
+
+    public void adicionarLivroNaEstante(String idEstante, String isbn, int paginaAtual) {
+        DocumentReference estanteRef = db.collection("estantes").document(idEstante);
+        // buscar estante, adicionar livro e atualizar
+    }
+}
 👨‍💻 Dupla
-
 Luiz Antônio Cardoso
-Gabriel Milano Alves
+
+Gabriel Milano

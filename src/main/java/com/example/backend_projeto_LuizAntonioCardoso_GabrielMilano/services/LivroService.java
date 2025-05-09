@@ -4,6 +4,8 @@ import com.example.backend_projeto_LuizAntonioCardoso_GabrielMilano.entities.Liv
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class LivroService {
 
@@ -14,10 +16,29 @@ public class LivroService {
         this.firebaseService = firebaseService;
     }
 
-    public Livro buscarLivroPorIsbn(String isbn) {
-        String url = "https://brasilapi.com.br/api/isbn/v1/" + isbn;
-        Livro livro = restTemplate.getForObject(url, Livro.class);
+    public Livro criarLivroPorIsbn(String isbn){
+        Livro livro = buscarNaApiLivroPorIsbn(isbn);
         firebaseService.salvarLivro(livro);
         return livro;
+    }
+
+    public Livro buscarNaApiLivroPorIsbn(String isbn) {
+        String url = "https://brasilapi.com.br/api/isbn/v1/" + isbn;
+        Livro livro = restTemplate.getForObject(url, Livro.class);
+        return livro;
+    }
+
+    public Livro buscarLivroPorIsbn(String isbn){
+        Livro livro = firebaseService.pegarLivroPorIsbn(isbn);
+        return livro;
+    }
+
+    public List<Livro> buscarTodosLivros () {
+        List<Livro> livros = firebaseService.pegarTodosLivros();
+        return livros;
+    }
+
+    public void deletarLivroPorIsbn (String isbn){
+        firebaseService.deletarLivroPorIsbn(isbn);
     }
 }

@@ -13,7 +13,6 @@ public class BackendProjetoLuizAntonioCardosoGabrielMilanoApplication {
 
 	public static void main(String[] args) {
 		try {
-			// Carrega o arquivo diretamente da pasta resources
 			InputStream serviceAccount = BackendProjetoLuizAntonioCardosoGabrielMilanoApplication.class
 					.getClassLoader()
 					.getResourceAsStream("serviceAccountKey.json");
@@ -29,7 +28,7 @@ public class BackendProjetoLuizAntonioCardosoGabrielMilanoApplication {
 			FirebaseApp.initializeApp(options);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(1); // força saída com erro, para o Gradle capturar
+			System.exit(1);
 		}
 
 		SpringApplication.run(BackendProjetoLuizAntonioCardosoGabrielMilanoApplication.class, args);
